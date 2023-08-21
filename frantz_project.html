@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frantz Project</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Golden Line</h1>
+    </header>
+    <h2>Outils dashbord</h2>
+
+    <!-- Menu déroulant pour les catégories -->
+    <select id="categorieDropdown"> 
+        <!-- Les options seront ajoutées dynamiquement via JavaScript -->
+    </select>
+
+    <!-- Menu déroulant pour le choix de type de graphique -->
+    <select id="typeSelection">
+        <option value="categorie">Dépense totale</option>
+        <option value="prix_panier">Panier moyen</option>
+    </select>
+
+    <!-- Bouton pour générer le graphique -->
+    <button type="button" id="generateGraphBtn">Afficher le graphique</button>
+
+    <!-- Conteneur pour le graphique -->
+    <div id="graphContainer">
+        <img id="graphImage" src="" alt="Graphique généré">
+    </div>
+</body>
+</html>
+
+
+
+
+
+    
