@@ -10,11 +10,18 @@ CREATE TABLE IF NOT EXISTS collectes(
     date_achat DATE NOT NULL
 );
 
-CREATE TABLE articles(
+CREATE TABLE IF NOT EXISTS articles(
     categorie VARCHAR(50) NOT NULL, 
     sous_categorie VARCHAR(50) NOT NULL,
     id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     prix INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS admin(
+    id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    login VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    role ENUM('admin', 'user') NOT NULL
 );
 
 -- associative tables

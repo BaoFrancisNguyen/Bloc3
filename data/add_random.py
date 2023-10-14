@@ -1,5 +1,3 @@
-
-
 import mysql.connector
 import random
 from datetime import datetime

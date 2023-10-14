@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Admin - GoldenLine</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h2>Ajouter un Nouvel Utilisateur</h2>
+    <form action="ajouter_utilisateur.php" method="post">
+        <label for="username">Nom d'utilisateur:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Mot de passe:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="admin">Administrateur</option>
+            <option value="utilisateur">Utilisateur</option>
+        </select>
+        
+        <button type="submit">Ajouter Utilisateur</button>
+    </form>
+    <hr>
+
+    <h2>Extraction Visuelle de la Table 'users'</h2>
+    
+    <table border="1">
+        <tr>
+            <th>ID Utilisateur</th>
+            <th>Nom d'Utilisateur</th>
+            <th>Rôle</th>
+        </tr>
+
+    </table>
+    <a href="deconnexion.php">Deconnexion</a>
+</body>
+</html>

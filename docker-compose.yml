@@ -1,5 +1,17 @@
 services:
 
+  bloc3:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+      - /var/www/html/vendor/
+    ports:
+      - 80:80   
+
   database:
     image: mariadb:11.1.2
     restart: always
@@ -14,10 +26,10 @@ services:
   database_seeder:
     image: mariadb:11.1.2
     volumes:
-      - ./sql/schema.sql:/sql/schema.sql
+      - ./data/schema.sql:/data/schema.sql
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "true"
-    entrypoint: [ "bash", "-c", "sleep 10 && mariadb --user=bloc3 --password=bloc3 --host=database --port=3306 bloc3 < /sql/schema.sql && exit"] 
+    entrypoint: [ "bash", "-c", "sleep 10 && mariadb --user=bloc3 --password=bloc3 --host=database --port=3306 bloc3 < /data/schema.sql && exit"] 
     depends_on:
       - database
 
