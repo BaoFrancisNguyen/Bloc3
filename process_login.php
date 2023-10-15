@@ -15,7 +15,7 @@ if ($conn->connect_error) {
     die("Erreur de connexion à la base de données: " . $conn->connect_error);
 }
 
-die("TEST");
+$_SESSION["is_logged_in"] = 0;
 
 // // Traitement du formulaire de connexion
 // if ($_SERVER["REQUEST_METHOD"] == "POST") {
