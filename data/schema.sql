@@ -39,3 +39,6 @@ CREATE TABLE IF NOT EXISTS collectes_articles(
     FOREIGN KEY (id_collecte) REFERENCES collectes(id),
     FOREIGN KEY (id_article) REFERENCES articles(id)
 );
+
+-- insertion of admin user if not exists
+INSERT IGNORE INTO admin(login, password, role) VALUES ('admin', 'admin', 'admin');
