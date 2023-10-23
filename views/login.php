@@ -52,7 +52,7 @@
         </header>
         <div class="login-container">
             <h2>Connexion</h2>
-            <form action="/login" method="post">
+            <form action="../public/process_login.php" method="post">
                 <label for="username">Nom d'utilisateur:</label>
                 <input type="text" id="username" name="username" required>
 

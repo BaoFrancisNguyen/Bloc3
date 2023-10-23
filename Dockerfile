@@ -6,9 +6,10 @@ RUN apt-get update \
     && apt-get install -y git \
     && apt-get install -y zip \
     && apt-get install -y unzip
+    
 
 # installing additional PHP extensions using 'docker-php-ext-install' followed by the name of the extension
-RUN docker-php-ext-install pdo_mysql mysqli
+RUN docker-php-ext-install mysqli
 
 # get latest Composer
 COPY --from=composer:2.6.5 /usr/bin/composer /usr/bin/composer
@@ -27,7 +28,7 @@ COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 
 # copy Apache virtual host
-COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # changing user 
 USER bloc3
@@ -36,7 +37,7 @@ USER bloc3
 WORKDIR /var/www/html
 
 # installing Composer deps, the vendor folder will only be populated inside the container
-# RUN composer install
+#RUN composer install
 
 # running Apache
 CMD apache2-foreground

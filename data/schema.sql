@@ -40,5 +40,26 @@ CREATE TABLE IF NOT EXISTS collectes_articles(
     FOREIGN KEY (id_article) REFERENCES articles(id)
 );
 
--- insertion of admin user if not exists
-INSERT IGNORE INTO admin(login, password, role) VALUES ('admin', 'admin', 'admin');
+
+
+-- Vérification si l'utilisateur admin existe déjà
+--SELECT COUNT(*) FROM admin WHERE login = 'admin';
+
+-- Si l'utilisateur admin n'existe pas, alors on l'insère
+--INSERT INTO admin(login, password, role)
+--VALUES ('admin', 'admin', 'admin')
+--WHERE NOT EXISTS (SELECT 1 FROM admin WHERE login = 'admin');
+
+DELIMITER //
+CREATE PROCEDURE InsertAdmin()
+BEGIN
+  DECLARE adminCount INT;
+
+  SELECT COUNT(*) INTO adminCount FROM admin WHERE login = 'admin';
+
+  IF adminCount = 0 THEN
+    INSERT INTO admin (login, password, role) VALUES ('admin', 'admin', 'admin');
+  END IF;
+END //
+DELIMITER ;
+CALL InsertAdmin();
