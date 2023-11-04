@@ -58,7 +58,7 @@ BEGIN
   SELECT COUNT(*) INTO adminCount FROM admin WHERE login = 'admin';
 
   IF adminCount = 0 THEN
-    INSERT INTO admin (login, password, role) VALUES ('admin', 'admin', 'admin');
+    INSERT INTO admin (login, password, role) VALUES ('admin', SHA2('admin', 256), 'admin');
   END IF;
 END //
 DELIMITER ;
