@@ -11,7 +11,7 @@ $username = "bloc3";
 $password = "bloc3";
 $dbname = "bloc3";
 
-$conn = new mysqli($servername, $username_db, $password_db, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // check the connection
 if ($conn->connect_error) {
