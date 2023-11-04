@@ -1,51 +1,59 @@
-<?php
 
-// Connexion à la base de données
+<?php
+// check if session is starting, run the session
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Connection on database
 $servername = "database";
 $username = "bloc3";
 $password = "bloc3";
 $dbname = "bloc3";
-try {
-    $conn = new mysqli($servername, $username, $password, $dbname);
-} catch (\Throwable $th) {
-    dump_errors($th);
-    die();
-}
+
+$conn = new mysqli($servername, $username_db, $password_db, $dbname);
+
+// check the connection
 if ($conn->connect_error) {
-    die("Erreur de connexion à la base de données: " . $conn->connect_error);
+    die("Erreur de connexion : " . $conn->connect_error);
 }
 
-$_SESSION["is_logged_in"] = 0;
+// Traitement du formulaire de connexion
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-// // Traitement du formulaire de connexion
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     $username = $_POST["username"];
-//     $password = $_POST["password"];
+    // Requête SQL pour récupérer le mot de passe haché de l'utilisateur
+    $sql = "SELECT id, password FROM admin WHERE login = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
 
-//     $sql = "SELECT * FROM admin WHERE login = '$username' AND password = '$password'";
-//     $result = $conn->query($sql);
+    // Vérification de l'existence de l'utilisateur
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($id, $hashed_password);
+        $stmt->fetch();
 
-//     die(var_dump($result));
+        // Vérification du mot de passe
+        if (password_verify($password, $hashed_password)) {
+            // Authentification réussie
+            $_SESSION["is_logged_in"] = 1;
+            $_SESSION["username"] = $username;
+            
+            // Redirection vers la page d'administration
+            header('Location: admin/admin.html');
+            exit;
+        } else {
+            echo "Mot de passe incorrect.";
+        }
+    } else {
+        echo "Nom d'utilisateur introuvable.";
+    }
 
-    // if ($result->num_rows == 1) {
-    //     $row = $result->fetch_assoc();
-    //     if ($row["role"] == 'admin') {
-    //         // L'administrateur est authentifié avec succès
-    //         session_start();
-    //         $_SESSION["username"] = $username;
-    //         header("Location: admin.html"); // Redirigez vers la page admin après la connexion
-    //     } else {
-    //         // L'utilisateur standard est authentifié avec succès
-    //         session_start();
-    //         $_SESSION["username"] = $username;
-    //         header("Location: index.html"); // Redirigez vers la page d'accueil après la connexion
-    //     }
-    // } else {
-    //     // Échec de l'authentification
-    //     $error_message = "Identifiant ou mot de passe incorrect.";
-    // }
-// }
+    $stmt->close();
+}
 
-// if(isset($_GET['error']) && $_GET['error'] == 'usernotfound') {
-//     echo '<p style="color: red;">L\'identifiant n\'existe pas. Veuillez contacter l\'administrateur.</p>';
-// }
+// Fermeture de la connexion à la base de données
+$conn->close();
+?>
