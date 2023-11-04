@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS articles(
 CREATE TABLE IF NOT EXISTS admin(
     id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     login VARCHAR(50) NOT NULL,
-    password VARCHAR(50) NOT NULL,
+    password VARCHAR(256) NOT NULL,
     role ENUM('admin', 'user') NOT NULL
 );
 
