@@ -5,6 +5,6 @@ session_unset();
 session_destroy();
 
 // Redirigez vers la page de connexion
-header("Location: process_login.php");
+header("Location: ../public/index.php");
 exit();
 ?>
