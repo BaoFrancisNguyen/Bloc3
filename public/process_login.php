@@ -53,9 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
        
     $row = $result->fetch_assoc();
 
-
-    
-
     //dump_anything($hashed_password);
         $provide_password = $_POST['password'];
         // Vérification du mot de passe
@@ -63,8 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Authentification réussie
             $_SESSION["is_logged_in"] = 1;
             $_SESSION["username"] = $username;
+            $_SESSION["role"] = $row["role"];
             
-    
             // Redirection vers la page d'administration
             header('Location: ../admin/admin.html');
             exit;
