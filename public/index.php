@@ -13,7 +13,7 @@ require_once "../dump_anything.php";
 // Vérification si l'utilisateur est déjà connecté
 if (isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1) {
     // Redirection vers la page d'administration si l'utilisateur est déjà connecté
-    header('Location: ../admin/admin.html');
+    require "../admin/admin.html";
     exit;
 }
 
