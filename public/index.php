@@ -17,7 +17,7 @@ switch ($request_route) {
             echo "HOME PAGE";
         }
         break;
-    case "POST_/login":
+    case "POST_/public/process_login.php":
         require "../process_login.php";
         break;
     default:
