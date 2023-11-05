@@ -10,15 +10,21 @@ session_start();
 
 require_once "../dump_anything.php";
 
+// Vérification si l'utilisateur est déjà connecté
+if (isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1) {
+    // Redirection vers la page d'administration si l'utilisateur est déjà connecté
+    header('Location: ../admin/admin.html');
+    exit;
+}
+
 $request_route = $_SERVER["REQUEST_METHOD"] . "_" . $_SERVER["REQUEST_URI"];
 
 switch ($request_route) {
     case 'GET_/':
         if(!isset($_SESSION["is_logged_in"]) || $_SESSION["is_logged_in"] != 1) {
             require "../views/login.php";
-        } else {
-            echo "HOME PAGE";
         }
+        
         break;
     case "POST_/login":
         require "process_login.php";
