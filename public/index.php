@@ -40,7 +40,7 @@ switch ($request_route) {
         require "../get_categories.php";
         break;
 
-    case "GET_/deconnexion.php":
+    case "GET_/admin/deconnexion.php":
         require "../admin/deconnexion.php";
         break;
 
