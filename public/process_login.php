@@ -31,12 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //dump_anything($password);
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     //dump_anything($hashed_password);
-
+/*
     // Préparation de la requête d'insertion
     $stmt = $conn->prepare("INSERT INTO admin (login, password) VALUES (?, ?)");
     $stmt->bind_param("ss", $username, $hashed_password); // Utilisez $hashed_password ici
     $stmt->execute();
-
+*/
 
     // Requête SQL pour récupérer le mot de passe haché de l'utilisateur
     $sql = "SELECT * FROM admin WHERE login = ?";
@@ -60,8 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Authentification réussie
             $_SESSION["is_logged_in"] = 1;
             $_SESSION["username"] = $username;
-            $_SESSION["role"] = $row["role"];
+            $_SESSION["role"] = $row['role'];
             
+    
             // Redirection vers la page d'administration
             header('Location: ../admin/admin.html');
             exit;
