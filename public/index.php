@@ -5,6 +5,8 @@ error_reporting(E_ALL);
 // Starting session
 session_start();
 
+require_once '../sql.php';
+
 // ! kill the session
 // session_destroy();
 
