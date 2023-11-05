@@ -41,16 +41,16 @@ CREATE TABLE IF NOT EXISTS collectes_articles(
 );
 
 
-DELIMITER //
-CREATE PROCEDURE InsertAdmin()
-BEGIN
-  DECLARE adminCount INT;
+--DELIMITER //
+--CREATE PROCEDURE InsertAdmin()
+--BEGIN
+  --DECLARE adminCount INT;
 
-  SELECT COUNT(*) INTO adminCount FROM admin WHERE login = 'admin';
+  --SELECT COUNT(*) INTO adminCount FROM admin WHERE login = 'admin';
 
-  IF adminCount = 0 THEN
-    INSERT INTO admin (login, password, role) VALUES ('admin', PASSWORD('admin'), 'admin');
-  END IF;
-END //
-DELIMITER ;
-CALL InsertAdmin();
+  --IF adminCount = 0 THEN
+    --INSERT INTO admin (login, password, role) VALUES ('admin', PASSWORD('admin'), 'admin');
+  --END IF;
+--END //
+--DELIMITER ;
+--CALL InsertAdmin();
