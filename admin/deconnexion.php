@@ -5,6 +5,6 @@ session_unset();
 session_destroy();
 
 // Redirigez vers la page de connexion
-header("Location: ../public/index.php");
+require "../public/index.php";
 exit();
 ?>
