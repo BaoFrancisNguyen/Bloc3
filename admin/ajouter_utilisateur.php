@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $role = $_POST["role"];
 
     // Vérifier si l'utilisateur existe déjà
-    $check_user_sql = "SELECT id_user FROM users WHERE username = '$username'";
+    $check_user_sql = "SELECT id FROM admin WHERE login = '$username'";
     $check_result = $conn->query($check_user_sql);
     if ($check_result->num_rows > 0) {
         echo "Cet utilisateur existe déjà dans la base de données.";
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Insérer dans la base de données
-    $sql = "INSERT INTO users (username, password, role) VALUES ('$username', '$hashed_password', '$role')";
+    $sql = "INSERT INTO admin (login, password, role) VALUES ('$username', '$hashed_password', '$role')";
     
     if ($conn->query($sql) === TRUE) {
         echo "Utilisateur ajouté avec succès. Vous serez redirigé dans quelques secondes...";
