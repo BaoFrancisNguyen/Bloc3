@@ -3,10 +3,12 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 // check if session is starting, run the session
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+require_once "../dump_anything.php";
 
 // Connection on database
 $servername = "database";
@@ -25,6 +27,16 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
+    //dump_anything($username);
+    //dump_anything($password);
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    //dump_anything($hashed_password);
+
+    // Préparation de la requête d'insertion
+    $stmt = $conn->prepare("INSERT INTO admin (login, password) VALUES (?, ?)");
+    $stmt->bind_param("ss", $username, $hashed_password); // Utilisez $hashed_password ici
+    $stmt->execute();
+
 
     // Requête SQL pour récupérer le mot de passe haché de l'utilisateur
     $sql = "SELECT * FROM admin WHERE login = ?";
@@ -33,20 +45,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Vérification de l'existence de l'utilisateur
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $hashed_password);
-        $stmt->fetch();
+    //dump_anything($result);
 
+    // Vérification de l'existence de l'utilisateur
+    if ($result->num_rows > 0) {
+       //TODO get the password from the result
+       
+    $row = $result->fetch_assoc();
+
+
+    
+
+    //dump_anything($hashed_password);
+        $provide_password = $_POST['password'];
         // Vérification du mot de passe
-        if (password_verify($password, $hashed_password)) {
+        if (password_verify($provide_password, $hashed_password)) {
             // Authentification réussie
             $_SESSION["is_logged_in"] = 1;
             $_SESSION["username"] = $username;
+            error_log("Password verified. Redirecting to admin page.", 3, "/path/to/your/debug.log");
+    
             // Redirection vers la page d'administration
-            header('Location: admin/admin.html');
+            header('Location: ../admin/admin.html');
             exit;
         } else {
+            error_log("Password verification failed.", 3, "/path/to/your/debug.log");
             echo "Mot de passe incorrect.";
         }
     } else {
