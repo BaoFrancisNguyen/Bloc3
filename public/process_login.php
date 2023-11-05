@@ -27,11 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
     // Requête SQL pour récupérer le mot de passe haché de l'utilisateur
-    $sql = "SELECT * FROM users WHERE username = ?";
+    $sql = "SELECT * FROM admin WHERE login = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
-    $stmt->store_result();
     $result = $stmt->get_result();
 
     // Vérification de l'existence de l'utilisateur

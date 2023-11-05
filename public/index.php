@@ -12,20 +12,15 @@ require_once "../dump_anything.php";
 
 $request_route = $_SERVER["REQUEST_METHOD"] . "_" . $_SERVER["REQUEST_URI"];
 
-
 switch ($request_route) {
     case 'GET_/':
-        //echo "GET route accessed";
-        //exit;
-        //print_r($_SESSION);
-       // exit;
         if(!isset($_SESSION["is_logged_in"]) || $_SESSION["is_logged_in"] != 1) {
             require "../views/login.php";
         } else {
             echo "HOME PAGE";
         }
         break;
-    case "POST_/process_login.php":
+    case "POST_/login":
         require "process_login.php";
         break;
     default:
