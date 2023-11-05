@@ -41,15 +41,6 @@ CREATE TABLE IF NOT EXISTS collectes_articles(
 );
 
 
-
--- Vérification si l'utilisateur admin existe déjà
---SELECT COUNT(*) FROM admin WHERE login = 'admin';
-
--- Si l'utilisateur admin n'existe pas, alors on l'insère
---INSERT INTO admin(login, password, role)
---VALUES ('admin', 'admin', 'admin')
---WHERE NOT EXISTS (SELECT 1 FROM admin WHERE login = 'admin');
-
 DELIMITER //
 CREATE PROCEDURE InsertAdmin()
 BEGIN
@@ -58,7 +49,7 @@ BEGIN
   SELECT COUNT(*) INTO adminCount FROM admin WHERE login = 'admin';
 
   IF adminCount = 0 THEN
-    INSERT INTO admin (login, password, role) VALUES ('admin', SHA2('admin', 256), 'admin');
+    INSERT INTO admin (login, password, role) VALUES ('admin', PASSWORD('admin'), 'admin');
   END IF;
 END //
 DELIMITER ;
