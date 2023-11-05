@@ -63,13 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Authentification réussie
             $_SESSION["is_logged_in"] = 1;
             $_SESSION["username"] = $username;
-            error_log("Password verified. Redirecting to admin page.", 3, "/path/to/your/debug.log");
+            
     
             // Redirection vers la page d'administration
             header('Location: ../admin/admin.html');
             exit;
         } else {
-            error_log("Password verification failed.", 3, "/path/to/your/debug.log");
+            
             echo "Mot de passe incorrect.";
         }
     } else {
