@@ -16,11 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $result = $stmt->get_result();
 
     // Vérification de l'existence de l'utilisateur
+
     if ($result->num_rows > 0)
     {
         $row = $result->fetch_assoc();
 
         if (password_verify($password, $hashed_password)) {
+
             // Authentification réussie
             $_SESSION["is_logged_in"] = 1;
             $_SESSION["username"] = $username;
