@@ -7,9 +7,6 @@ session_start();
 
 require_once '../sql.php';
 
-// ! kill the session
-// session_destroy();
-
 require_once "../dump_anything.php";
 
 $request_route = $_SERVER["REQUEST_METHOD"] . "_" . $_SERVER["REQUEST_URI"];
@@ -26,7 +23,6 @@ switch ($request_route) {
         break;
 
     case 'GET_/admin/admin.html':
-        //TODO check the role of the user
         if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1 && $_SESSION["role"] == "admin") {
             require "../admin/admin.html";
         }
@@ -42,7 +38,7 @@ switch ($request_route) {
         require "../get_categories.php";
         break;
 
-    case "GET_/deconnexion.php":
+    case "GET_/admin/deconnexion.php":
         require "../admin/deconnexion.php";
         break;
 
@@ -50,9 +46,15 @@ switch ($request_route) {
         require "process_login.php";
         break;
 
+    case "POST_/admin/ajouter_utilisateur.php":
+        require "../admin/ajouter_utilisateur.php";
+        break;
 
     default:
         // TODO make a 404 page
         dump_anything("404 blabla");
         break;
 }
+
+
+$conn->close();

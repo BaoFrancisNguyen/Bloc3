@@ -1,6 +1,8 @@
 <?php
 
-$dbhost = "database"; // name of the dockerized db service
+$martymode = true;
+
+$dbhost = $martymode ? "127.0.0.1" : "database";
 $dbuser = "bloc3";
 $password = "bloc3";
 $db = "bloc3";
