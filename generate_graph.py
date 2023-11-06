@@ -25,77 +25,89 @@ class GraphGenerator:
         elif self.mode == "prix_panier":
             self._generate_panier_moyen_graph()
 
+    
     def _generate_category_graph(self):
-        #print('création du graphique')
-        cnx = self.connect_db()
-        cursor = cnx.cursor()
-        query = ("""
-            SELECT 
-                d.categorie,
-                SUM(d.montant) AS total_depense
-            FROM 
-                depenses_categorie d
-            JOIN
-                clients c ON d.collecte_id = c.collecte_id
-            WHERE
-                c.cat_socio_pro = %s
-            GROUP BY
-                d.categorie
-        """)
-        cursor.execute(query, (self.socio_pro_choice,))
-        labels, sizes = [], []
-        for row in cursor:
-            labels.append(row[0])
-            sizes.append(row[1])
-        cursor.close()
-        cnx.close()
-
-        fig1, ax1 = plt.subplots()
-        ax1.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
-        ax1.axis('equal')
-        plt.savefig("output_category_graph.png")
-        #print('votre graphique est prêt')
-
-    def _generate_panier_moyen_graph(self):
-        #print('création du graphique')
         cnx = self.connect_db()
         cursor = cnx.cursor()
         
-        # Modification de la requête pour sélectionner les dates et les paniers moyens par date
-        #print('chargement des données')
+        # Updated query to select categories and total expenses from the depenses_categorie table
         query = ("""
             SELECT 
-                c.date_achat,
-                AVG(c.prix_panier) AS panier_moyen
+                a.categorie,
+                SUM(a.prix * sa.quantite) AS total_depense
             FROM 
-                clients c
+                session_articles sa
+            JOIN
+                articles a ON sa.article_id = a.article_id
+            JOIN
+                collectes col ON sa.collecte_id = col.collecte_id
+            JOIN
+                clients cli ON col.collecte_id = cli.collecte_id
             WHERE
-                c.cat_socio_pro = %s
+                cli.cat_socio_pro = %s
             GROUP BY
-                c.date_achat
+                a.categorie
+        """)
+        cursor.execute(query, (self.socio_pro_choice,))
+        categories, expenses = [], []
+        for row in cursor:
+            categories.append(row[0])
+            expenses.append(row[1])
+
+        cursor.close()
+        cnx.close()
+
+        # Generate a pie chart
+        fig1, ax1 = plt.subplots()
+        ax1.pie(expenses, labels=categories, autopct='%1.1f%%', startangle=90)
+        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        ax1.set_title(f'Total dépenses par catégorie pour {self.socio_pro_choice}')
+        plt.savefig("output_category_graph.png")
+        print('votre graphique est prêt')
+
+    
+    def _generate_panier_moyen_graph(self):
+        cnx = self.connect_db()
+        cursor = cnx.cursor()
+        
+        # Corrected query to select dates and average paniers from the collectes table
+        query = ("""
+            SELECT 
+                col.date_achat,
+                AVG(col.prix_panier) AS panier_moyen
+            FROM 
+                collectes col
+            JOIN
+                clients cli ON col.collecte_id = cli.collecte_id
+            WHERE
+                cli.cat_socio_pro = %s
+            GROUP BY
+                col.date_achat
             ORDER BY
-                c.date_achat
+                col.date_achat
         """)
         cursor.execute(query, (self.socio_pro_choice,))
         dates, averages = [], []
-        #print(dates, averages)
         for row in cursor:
             dates.append(row[0])
             averages.append(row[1])
-            #print(dates, averages)
 
         cursor.close()
         cnx.close()
 
         fig1, ax1 = plt.subplots()
-        ax1.plot(dates, averages, marker='o')  # Utilisation de plot pour un graphique linéaire
+        ax1.plot(dates, averages, marker='o')
         ax1.set_ylabel('Panier Moyen')
         ax1.set_xlabel('Date d\'achat')
         ax1.set_title(f'Panier moyen pour {self.socio_pro_choice} en fonction de la date')
-        plt.xticks(rotation=45)  # Rotation des étiquettes pour une meilleure lisibilité
-        plt.tight_layout()  # Ajustement pour s'assurer que les étiquettes ne se chevauchent pas
+        plt.xticks(rotation=45)
+        plt.tight_layout()
         plt.savefig("output_panier_moyen_graph.png")
-        #print('votre graphique est prêt')
+        print('votre graphique est prêt')
+
+
+        cursor.close()
+        cnx.close()
 
 
 
@@ -104,10 +116,10 @@ if __name__ == "__main__":
         socio_pro_choice = sys.argv[1]
         mode = sys.argv[2]
         db_config = {
-            'user': 'root',
-            'password': '',
+            'user': 'bloc3',
+            'password': 'bloc3',
             'host': '127.0.0.1',
-            'database': 'fichier_clients',
+            'database': 'bloc3',
             'raise_on_warnings': True
         }
         #print(sys.argv)
@@ -117,7 +129,5 @@ if __name__ == "__main__":
         #print('méthode appelée')
     else:
         print("Erreur : arguments insuffisants.")
-
-        
 
 
