@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS session_articles (
     session_article_id VARCHAR(256) NOT NULL,
     article_id INTEGER UNSIGNED NOT NULL,
     quantite INTEGER NOT NULL,
+    collecte_id INTEGER UNSIGNED NOT NULL,
     PRIMARY KEY (session_article_id),
     FOREIGN KEY (article_id) REFERENCES articles(article_id),
     FOREIGN KEY (collecte_id) REFERENCES collectes(collecte_id)
