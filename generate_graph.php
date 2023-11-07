@@ -17,7 +17,7 @@ $categorie_escaped = escapeshellarg($categorie);
 $type_escaped = escapeshellarg($type);
 
 // Exécutez le script Python avec les paramètres sécurisés
-$command = "python3.10 c:/xampp/htdocs/projet/generate_graph.py " . $categorie_escaped . " " . $type_escaped;
+$command = "python3.10 generate_graph.py " . $categorie_escaped . " " . $type_escaped;
 exec($command, $output, $return_var);
 
 // Renvoyez la réponse au client
