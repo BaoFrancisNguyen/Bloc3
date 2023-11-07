@@ -19,3 +19,4 @@
 
 warning: if the database seeder doesn't do his job, just copy/paste `data\schema.sql`on the phpmyadmin (user=bloc3 --password=bloc3 --host=database)
     to create new user, execute on SQL : INSERT INTO admin (login, password, role) VALUES ('your_login', PASSWORD('your_password'), 'admin_or_user')
+    to create new customer (add to the database) : run the add_random.py
