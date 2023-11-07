@@ -62,8 +62,8 @@ class GraphGenerator:
         ax1.pie(expenses, labels=categories, autopct='%1.1f%%', startangle=90)
         ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
         ax1.set_title(f'Total dépenses par catégorie pour {self.socio_pro_choice}')
-        plt.savefig("output_category_graph.png")
-        print('votre graphique est prêt')
+        plt.savefig("../output_category_graph.png")
+        print('votre graphique est pret')
 
     
     def _generate_panier_moyen_graph(self):
@@ -102,8 +102,8 @@ class GraphGenerator:
         ax1.set_title(f'Panier moyen pour {self.socio_pro_choice} en fonction de la date')
         plt.xticks(rotation=45)
         plt.tight_layout()
-        plt.savefig("output_panier_moyen_graph.png")
-        print('votre graphique est prêt')
+        plt.savefig("../output_panier_moyen_graph.png")
+        print('votre graphique est pret')
 
 
         cursor.close()
