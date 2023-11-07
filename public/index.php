@@ -1,4 +1,5 @@
 <?php
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -12,7 +13,8 @@ require_once '../sql.php';
 
 require_once "../dump_anything.php";
 
-$request_route = $_SERVER["REQUEST_METHOD"] . "_" . $_SERVER["REQUEST_URI"];
+//SCRIPT_URL plutot que REQUEST_URI : SCRIPT_URL ne contient pas les parametres GET qui peuvent etre très changeants
+$request_route = $_SERVER["REQUEST_METHOD"] . "_" . $_SERVER["SCRIPT_URL"];
 
 switch ($request_route) {
 
@@ -48,6 +50,15 @@ switch ($request_route) {
 
     case "POST_/login":
         require "process_login.php";
+        break;
+
+    case "GET_/generate_graph.php":
+        require "../generate_graph.php";
+        break;
+
+
+    case "GET_/generate_graph.php":
+        require "../generate_graph.php";
         break;
 
 

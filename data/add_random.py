@@ -47,40 +47,43 @@ def insert_client(cursor, nb_enfants, cat_socio_pro, collecte_id):
                    (nb_enfants, cat_socio_pro, collecte_id))
     return cursor.lastrowid
 
-try:
-    # Step 1: Insert a collecte with an initial prix panier of 0
-    date_achat = datetime.now().strftime("%Y-%m-%d")
-    collecte_id = insert_collecte(cursor, 0, date_achat)
-    
-    # Steps 2 and 3: Select articles and calculate the prix panier
-    prix_panier, achats = select_and_calculate_prix_panier(cursor)
-    
-    # Update the prix_panier in the collectes table
-    cursor.execute("UPDATE collectes SET prix_panier = %s WHERE collecte_id = %s", (prix_panier, collecte_id))
-    
-    # Step 4: Insert a client
-    nb_enfants = random.randint(0, 5)
-    cat_socio_pro = random.choice(['employé', 'ouvrier', 'cadre', 'artiste', 'étudiant', 'retraité'])
-    client_id = insert_client(cursor, nb_enfants, cat_socio_pro, collecte_id)
-    
-    # Step 5: Insert details of purchased articles
-    insert_achats(cursor, achats, collecte_id)
-    
-    # Commit the changes if all operations are successful
-    connection.commit()
-    
-except mysql.connector.Error as err:
-    print(f"Erreur lors de la connexion à la base de données: {err}")
-    # Rollback changes in case of an error
-    connection.rollback()
-finally:
-    if connection.is_connected():
-        cursor.close()
-        connection.close()
-        print("Données aléatoires insérées avec succès.")
+def insertion_donnes(nb):
+
+    try:
+        for i in range(nb):
+            # Step 1: Insert a collecte with an initial prix panier of 0
+            date_achat = datetime.now().strftime("%Y-%m-%d")
+            collecte_id = insert_collecte(cursor, 0, date_achat)
+            
+            # Steps 2 and 3: Select articles and calculate the prix panier
+            prix_panier, achats = select_and_calculate_prix_panier(cursor)
+            
+            # Update the prix_panier in the collectes table
+            cursor.execute("UPDATE collectes SET prix_panier = %s WHERE collecte_id = %s", (prix_panier, collecte_id))
+            
+            # Step 4: Insert a client
+            nb_enfants = random.randint(0, 5)
+            cat_socio_pro = random.choice(['employé', 'ouvrier', 'cadre', 'artiste', 'étudiant', 'retraité'])
+            client_id = insert_client(cursor, nb_enfants, cat_socio_pro, collecte_id)
+            
+            # Step 5: Insert details of purchased articles
+            insert_achats(cursor, achats, collecte_id)
+            
+            # Commit the changes if all operations are successful
+            connection.commit()
+        
+    except mysql.connector.Error as err:
+        print(f"Erreur lors de la connexion à la base de données: {err}")
+        # Rollback changes in case of an error
+        connection.rollback()
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            print("Données aléatoires insérées avec succès.")
 
 
-
+insertion_donnes(10)
 
 
 
