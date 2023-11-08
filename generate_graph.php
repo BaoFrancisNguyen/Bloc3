@@ -19,7 +19,7 @@ $categorie_escaped = escapeshellarg($categorie);
 $type_escaped = escapeshellarg($type);
 
 // Exécutez le script Python avec les paramètres sécurisés
-$command = "python.exe ../generate_graph.py " . $categorie_escaped . " " . $type_escaped;
+$command = "python.exe ../generat_graph.py " . $categorie_escaped . " " . $type_escaped;
 $command .= "2>&1";
 
 $retour = exec($command, $output, $return_var);
