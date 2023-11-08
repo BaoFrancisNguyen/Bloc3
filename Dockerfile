@@ -41,5 +41,9 @@ WORKDIR /var/www/html
 # installing Composer deps, the vendor folder will only be populated inside the container
 #RUN composer install
 
+# installing requirements.txt for Python dependencies
+COPY requirements.txt /var/www/html/
+RUN pip3 install -r requirements.txt
+
 # running Apache
 CMD apache2-foreground
