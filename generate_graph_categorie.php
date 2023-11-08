@@ -5,7 +5,7 @@ if (!isset($_GET['categorie'])) {
 }
 
 $categorie = $_GET['categorie'];
-$command = "python3.10 c:/xampp/htdocs/projet/generate_graph.py " . escapeshellarg($categorie) . " categorie";
+$command = "python3.10 generate_graph.py " . escapeshellarg($categorie) . " categorie";
 exec($command, $output, $return);
 
 echo "Command executed: " . $command . "<br>";
