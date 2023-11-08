@@ -49,11 +49,11 @@ $(document).ready(function() {
                     // Mettez à jour la source de l'image avec le chemin du graphique généré
                     $("#graphImage").attr("src", imageName + "?" + new Date().getTime()); // Ajout d'un timestamp pour forcer le rechargement de l'image
                 } else {
-                    displayNotification("Erreur lors de la génération du graphique.");
+                    displayNotification(data); //"Erreur lors de la génération du graphique.");
                 }
             },
-            error: function() {
-                displayNotification("Erreur lors de la demande de génération du graphique.");
+            error: function(data) {
+                displayNotification(data.responseText); //"Erreur lors de la demande de génération du graphique.");
             }
         });
     }

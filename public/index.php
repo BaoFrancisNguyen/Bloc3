@@ -61,8 +61,6 @@ switch ($request_route) {
         require "../output_panier_moyen_graph.png";
         break;
 
-
-
     case "GET_/output_category_graph.png":
         require "../output_category_graph.png";
         break;
