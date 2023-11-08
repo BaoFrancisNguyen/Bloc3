@@ -1,20 +1,30 @@
 
-FROM python:3.10-slim
+FROM php:8.2-apache
 
 # Install system dependencies required for Composer
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y libpq-dev\
     sudo \
     git \
     zip \
     unzip \
     python3.10 \
-    python3-pip
+    python3-pip 
+    
+    
 
-RUN pip install matplotlib
+# Install Python dependencies
+RUN git clone https://github.com/matplotlib/matplotlib.git
+RUN cd matplotlib -m pip install .
+RUN git clone https://github.com/mysql/mysql-connector-python.git
+RUN cd mysql-connector-python -m pip install .
+
+
+
+    
     
 
 # installing additional PHP extensions using 'docker-php-ext-install' followed by the name of the extension
-FROM php:8.2-apache
+
 RUN docker-php-ext-install mysqli
 
 # get latest Composer
