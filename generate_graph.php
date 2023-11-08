@@ -1,7 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-
 // Vérifiez si les paramètres nécessaires sont présents
 if (!isset($_GET['categorie']) || !isset($_GET['type'])) {
     echo json_encode([
