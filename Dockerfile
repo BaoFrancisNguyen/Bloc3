@@ -1,11 +1,13 @@
 FROM php:8.2-apache
 
 # Install system dependencies required for Composer
-RUN apt-get update \
-    && apt-get install -y sudo \
-    && apt-get install -y git \
-    && apt-get install -y zip \
-    && apt-get install -y unzip
+RUN apt-get update && apt-get install -y \
+    sudo \
+    git \
+    zip \
+    unzip \
+    python3.10 \
+    python3-pip
     
 
 # installing additional PHP extensions using 'docker-php-ext-install' followed by the name of the extension
