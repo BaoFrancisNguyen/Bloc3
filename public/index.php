@@ -24,14 +24,12 @@ switch ($request_route) {
         break;
 
     case 'GET_/admin/admin.php':
-        //TODO check the role of the user
         if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1 && $_SESSION["role"] == "admin") {
             require "../admin/admin.php";
         }
         break;
 
     case 'GET_/admin/dashboard.php':
-        //TODO check the role of the user
         if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1 && $_SESSION["role"] == "admin") {
             require "../admin/dashboard.php";
         }
@@ -44,6 +42,12 @@ switch ($request_route) {
         }
         break;
 
+
+    case 'POST_/admin/ajouter_utilisateur.php':
+        if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1 && $_SESSION["role"] == "admin") {
+            require "../admin/ajouter_utilisateur.php";
+        }
+        break;
 
     case "GET_/get_categories.php":
         require "../get_categories.php";
