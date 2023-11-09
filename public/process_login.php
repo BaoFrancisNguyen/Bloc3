@@ -27,7 +27,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["role"] = $row['role'];
             
             // Redirection vers la page d'administration
-            header('Location: ../admin/admin.html');
+            
+            if ($row['role'] == 'admin') {
+                header('Location: ../admin/admin.html');
+            }
+            else {
+                header('Location: /');
+            }
+            
+
             exit;
         } else {
             
