@@ -29,13 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Redirection vers la page d'administration
             
             if ($row['role'] == 'admin') {
-                header('Location: ../admin/admin.html');
+                header('Location: ../admin/admin.php');
             }
             else {
                 header('Location: /');
             }
             
-
             exit;
         } else {
             

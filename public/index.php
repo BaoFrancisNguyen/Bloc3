@@ -8,10 +8,6 @@ session_start();
 
 require_once '../sql.php';
 
-// ! kill the session
-// session_destroy();
-
-require_once "../dump_anything.php";
 
 //SCRIPT_URL plutot que REQUEST_URI : SCRIPT_URL ne contient pas les parametres GET qui peuvent etre très changeants
 $request_route = $_SERVER["REQUEST_METHOD"] . "_" . $_SERVER["SCRIPT_URL"];
@@ -27,18 +23,40 @@ switch ($request_route) {
         }
         break;
 
-    case 'GET_/admin/admin.html':
-        //TODO check the role of the user
-        if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1 && $_SESSION["role"] == "admin") {
-            require "../admin/admin.html";
-        }
-        break;
-
     case 'GET_/admin/admin.php':
-        if(isset($_SESSION["is_logged_in"]) || $_SESSION["is_logged_in"] == 1) {
+        if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1 && $_SESSION["role"] == "admin") {
             require "../admin/admin.php";
         }
         break;
+
+    case 'GET_/admin/dashboard.php':
+        if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1 && $_SESSION["role"] == "admin") {
+            require "../admin/dashboard.php";
+        }
+        break;
+
+    case 'GET_/admin/index.php':
+        //TODO check the role of the user
+        if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1 && $_SESSION["role"] == "admin") {
+            require "../admin/index.php";
+        }
+        break;
+
+
+    case 'POST_/admin/ajouter_utilisateur.php':
+        if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1 && $_SESSION["role"] == "admin") {
+            require "../admin/ajouter_utilisateur.php";
+        }
+        break;
+
+    case 'GET_/data/run_add_random_script.php':
+        if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1 && $_SESSION["role"] == "admin") {
+            require "../data/run_add_random_script.php";
+        }
+        break;
+
+
+
 
     case "GET_/get_categories.php":
         require "../get_categories.php";
@@ -55,10 +73,7 @@ switch ($request_route) {
     case "GET_/generate_graph.php":
         require "../generate_graph.php";
         break;
-    
-    case "GET_/generate_graph.py":
-        require "../generate_graph.py";
-        break;
+
 
     case "GET_/output_panier_moyen_graph.png":
         require "../output_panier_moyen_graph.png";
@@ -68,17 +83,9 @@ switch ($request_route) {
         require "../output_category_graph.png";
         break;
 
-    case "GET_/generate_graph_categorie.php":
-        require "../generate_graph_categorie.php";
-        break;
-
-    case "GET_/generate_graph_panier_moyen.php":
-        require "../generate_graph_panier_moyen.php";
-        break;
-
 
     default:
-        // TODO make a 404 page
-        dump_anything("404 blabla");
+        header("HTTP/1.1 404 Not Found");
+        require "../404.html";
         break;
 }

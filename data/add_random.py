@@ -6,7 +6,7 @@ from datetime import datetime
 config = {
     'user': 'bloc3',
     'password': 'bloc3',
-    'host': '127.0.0.1',
+    'host': 'database',
     'database': 'bloc3',
     'raise_on_warnings': True
 }
