@@ -30,6 +30,21 @@ switch ($request_route) {
         }
         break;
 
+    case 'GET_/admin/dashboard.php':
+        //TODO check the role of the user
+        if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1 && $_SESSION["role"] == "admin") {
+            require "../admin/dashboard.php";
+        }
+        break;
+
+    case 'GET_/admin/index.php':
+        //TODO check the role of the user
+        if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1 && $_SESSION["role"] == "admin") {
+            require "../admin/index.php";
+        }
+        break;
+
+
     case "GET_/get_categories.php":
         require "../get_categories.php";
         break;
