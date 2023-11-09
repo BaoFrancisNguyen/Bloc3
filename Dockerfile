@@ -10,8 +10,7 @@ RUN apt-get update && apt-get install -y libpq-dev\
     python3.10 \
     python3-pip 
     
-    
-    
+
 
 # Install Python dependencies
 COPY requirements.txt requirements.txt

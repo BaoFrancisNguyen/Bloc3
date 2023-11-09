@@ -55,7 +55,10 @@ switch ($request_route) {
     case "GET_/generate_graph.php":
         require "../generate_graph.php";
         break;
-
+    
+    case "GET_/generate_graph.py":
+        require "../generate_graph.py";
+        break;
 
     case "GET_/output_panier_moyen_graph.png":
         require "../output_panier_moyen_graph.png";
@@ -63,6 +66,14 @@ switch ($request_route) {
 
     case "GET_/output_category_graph.png":
         require "../output_category_graph.png";
+        break;
+
+    case "GET_/generate_graph_categorie.php":
+        require "../generate_graph_categorie.php";
+        break;
+
+    case "GET_/generate_graph_panier_moyen.php":
+        require "../generate_graph_panier_moyen.php";
         break;
 
 
