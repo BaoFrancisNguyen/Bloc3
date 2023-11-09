@@ -10,6 +10,8 @@
     <br>
     <a href="admin.php">Admin</a><br>
     <br>
+    <a href="../data/run_add_random_script.php">add random data</a><br>
+    <br>
     <a href="deconnexion.php">Deconnexion</a><br>
     <br>
 

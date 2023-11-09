@@ -49,6 +49,15 @@ switch ($request_route) {
         }
         break;
 
+    case 'GET_/data/run_add_random_script.php':
+        if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1 && $_SESSION["role"] == "admin") {
+            require "../data/run_add_random_script.php";
+        }
+        break;
+
+
+
+
     case "GET_/get_categories.php":
         require "../get_categories.php";
         break;
@@ -66,6 +75,7 @@ switch ($request_route) {
         break;
 
     default:
+        header("HTTP/1.1 404 Not Found");
         require "../404.html";
         break;
 }
