@@ -15,7 +15,7 @@
         <label for="role">Role:</label>
         <select id="role" name="role">
             <option value="admin">Administrateur</option>
-            <option value="utilisateur">Utilisateur</option>
+            <option value="user">Utilisateur</option>
         </select>
         
         <button type="submit">Ajouter Utilisateur</button>
