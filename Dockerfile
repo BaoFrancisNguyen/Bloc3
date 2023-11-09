@@ -11,12 +11,21 @@ RUN apt-get update && apt-get install -y libpq-dev\
     python3-pip 
     
     
+    
 
 # Install Python dependencies
+COPY requirements.txt requirements.txt
+RUN pip3 install --break-system-packages -r requirements.txt
+
 RUN git clone https://github.com/matplotlib/matplotlib.git
 RUN cd matplotlib -m pip install .
 RUN git clone https://github.com/mysql/mysql-connector-python.git
 RUN cd mysql-connector-python -m pip install .
+
+
+
+
+
 
 
 
