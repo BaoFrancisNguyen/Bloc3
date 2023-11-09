@@ -8,10 +8,6 @@ session_start();
 
 require_once '../sql.php';
 
-// ! kill the session
-// session_destroy();
-
-require_once "../dump_anything.php";
 
 //SCRIPT_URL plutot que REQUEST_URI : SCRIPT_URL ne contient pas les parametres GET qui peuvent etre très changeants
 $request_route = $_SERVER["REQUEST_METHOD"] . "_" . $_SERVER["SCRIPT_URL"];
