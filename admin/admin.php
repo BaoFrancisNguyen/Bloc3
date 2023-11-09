@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Page Admin - GoldenLine</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <h2>Ajouter un Nouvel Utilisateur</h2>
