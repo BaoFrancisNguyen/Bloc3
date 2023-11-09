@@ -15,7 +15,7 @@
         <label for="role">Role:</label>
         <select id="role" name="role">
             <option value="admin">Administrateur</option>
-            <option value="utilisateur">Utilisateur</option>
+            <option value="user">Utilisateur</option>
         </select>
         
         <button type="submit">Ajouter Utilisateur</button>
@@ -30,6 +30,7 @@
             <th>login d'Utilisateur</th>
             <th>Rôle</th>
         </tr>
+        
 
 <?php
 
@@ -51,7 +52,7 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?>
-
+    <a href="../data/run_add_random_script.php">add random data</a><br>
     </table>
     <a href="deconnexion.php">Deconnexion</a>
 </body>
