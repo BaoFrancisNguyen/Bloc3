@@ -49,7 +49,6 @@ if ($result->num_rows > 0) {
     echo "<tr><td colspan='3'>Aucune donnée trouvée.</td></tr>";
 }
 
-$conn->close();
 ?>
 
     </table>

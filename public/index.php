@@ -55,9 +55,6 @@ switch ($request_route) {
         }
         break;
 
-
-
-
     case "GET_/get_categories.php":
         require "../get_categories.php";
         break;
