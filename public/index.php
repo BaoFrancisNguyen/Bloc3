@@ -67,7 +67,6 @@ switch ($request_route) {
 
 
     default:
-        // TODO make a 404 page
-        dump_anything("404 blabla");
+        require "../404.html";
         break;
 }
