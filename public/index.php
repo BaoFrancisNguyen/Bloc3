@@ -23,15 +23,9 @@ switch ($request_route) {
         }
         break;
 
-    case 'GET_/admin/admin.html':
+    case 'GET_/admin/admin.php':
         //TODO check the role of the user
         if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"] == 1 && $_SESSION["role"] == "admin") {
-            require "../admin/admin.html";
-        }
-        break;
-
-    case 'GET_/admin/admin.php':
-        if(isset($_SESSION["is_logged_in"]) || $_SESSION["is_logged_in"] == 1) {
             require "../admin/admin.php";
         }
         break;
@@ -51,16 +45,6 @@ switch ($request_route) {
     case "GET_/generate_graph.php":
         require "../generate_graph.php";
         break;
-
-
-    case "GET_/output_panier_moyen_graph.png":
-        require "../output_panier_moyen_graph.png";
-        break;
-
-    case "GET_/output_category_graph.png":
-        require "../output_category_graph.png";
-        break;
-
 
     default:
         require "../404.html";
