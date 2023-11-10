@@ -50,7 +50,6 @@ if ($result->num_rows > 0) {
     echo "<tr><td colspan='3'>Aucune donnée trouvée.</td></tr>";
 }
 
-$conn->close();
 ?>
     <a href="../data/run_add_random_script.php">add random data</a><br>
     </table>

@@ -8,7 +8,7 @@
 
     <a href="dashboard.php">dashboard</a><br>
     <br>
-    <a href="admin.php">Admin</a><br>
+    <a href="admin.php">gestion utilisateurs</a><br>
     <br>
     <a href="../data/run_add_random_script.php">add random data</a><br>
     <br>
