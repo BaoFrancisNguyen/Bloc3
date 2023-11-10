@@ -54,5 +54,6 @@ if ($result->num_rows > 0) {
     <a href="../data/run_add_random_script.php">add random data</a><br>
     </table>
     <a href="deconnexion.php">Deconnexion</a>
+    
 </body>
 </html>
