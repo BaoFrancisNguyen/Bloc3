@@ -3,18 +3,18 @@ name: PHP Unit Tests
 on: [push, pull_request]
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ubuntu-latest
+
+    services:
+      # Si l'application nécessite des services comme une base de données
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Set up PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
+    - name: Build Docker image
+      run: docker build -t my-php-app .
 
-    - name: Run PHPUnit tests
-      run: ./vendor/bin/phpunit
+    - name: Run PHPUnit tests inside Docker container
+      run: docker run my-php-app ./vendor/bin/phpunit
 
-    # Autres étapes comme l'upload d'artéfacts, si nécessaire
