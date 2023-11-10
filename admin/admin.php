@@ -55,6 +55,5 @@ if ($result->num_rows > 0) {
     </table>
     <a href="deconnexion.php">Deconnexion</a>
 
-    
 </body>
 </html>
