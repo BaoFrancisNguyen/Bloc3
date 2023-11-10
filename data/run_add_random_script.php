@@ -1,6 +1,6 @@
 <?php
 
-$command = "python ../data/add_random.py";
+$command = "python3 ../data/add_random.py";
 $command .= " 2>&1";
 
 $retour = exec($command, $output, $return_var);
