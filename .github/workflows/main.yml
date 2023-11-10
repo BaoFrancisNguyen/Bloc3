@@ -7,7 +7,14 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      # Si l'application nécessite des services comme une base de données
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: bloc3
+          MYSQL_DATABASE: bloc3
+        ports:
+          - 3306:3306
 
     steps:
     - uses: actions/checkout@v2
