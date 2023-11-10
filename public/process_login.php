@@ -1,5 +1,6 @@
 <?php
 
+
 // Traitement du formulaire de connexion
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
