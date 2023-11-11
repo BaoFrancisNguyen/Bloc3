@@ -13,8 +13,11 @@ RUN apt-get update && apt-get install -y libpq-dev\
 
 
 # Install Python dependencies
+
 COPY requirements.txt requirements.txt
 RUN pip3 install --break-system-packages -r requirements.txt
+
+
 
 
 # installing additional PHP extensions using 'docker-php-ext-install' followed by the name of the extension
@@ -45,7 +48,7 @@ USER bloc3
 WORKDIR /var/www/html
 
 # installing Composer deps, the vendor folder will only be populated inside the container
-#RUN composer install
+RUN composer install
 
 
 
