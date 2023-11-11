@@ -1,1 +1,1 @@
-web:node Heroku/apache2-foreground
+web: Heroku/apache2-foreground
