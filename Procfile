@@ -1,1 +1,1 @@
-web: apache2-foreground
+web:node apache2-foreground
