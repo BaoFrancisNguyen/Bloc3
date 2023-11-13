@@ -74,13 +74,11 @@ def test_insert_achats():
 
     # Vérifiez que les appels à la base de données sont corrects
     calls = [
-        ((1, 2, collecte_id),),
-        ((2, 3, collecte_id),)
+        (("INSERT INTO session_articles (article_id, quantite, collecte_id) VALUES (%s, %s, %s)", (1, 2, collecte_id)),),
+        (("INSERT INTO session_articles (article_id, quantite, collecte_id) VALUES (%s, %s, %s)", (2, 3, collecte_id)),)
     ]
-    cursor_mock.execute.assert_has_calls([
-        (("INSERT INTO session_articles (article_id, quantite, collecte_id) VALUES (%s, %s, %s)", call),)
-        for call in calls
-    ], any_order=True)
+    cursor_mock.execute.assert_has_calls(calls, any_order=True)
+
 
 def insert_client(cursor, nb_enfants, cat_socio_pro, collecte_id):
     # Insert client information associated with this collecte
