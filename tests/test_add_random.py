@@ -82,4 +82,5 @@ def insertion_donnes(nb):
             connection.close()
             print("Données aléatoires insérées avec succès.")
 
+
 insertion_donnes(10)
