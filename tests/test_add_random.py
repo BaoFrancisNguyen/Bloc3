@@ -2,7 +2,24 @@
 import pytest
 from unittest.mock import MagicMock
 import random
-from ../data/add_random import select_and_calculate_prix_panier
+import sys
+sys.path.append('../data')
+from add_random import select_and_calculate_prix_panier
+
+def select_and_calculate_prix_panier(cursor, nombre_articles=5):
+    # Select random articles and calculate the prix panier
+    cursor.execute("SELECT article_id, prix FROM articles")
+    articles_disponibles = cursor.fetchall()
+    articles_achetes = random.sample(articles_disponibles, nombre_articles)
+
+    prix_panier = 0
+    achats = []
+    for article_id, prix in articles_achetes:
+        quantite = random.randint(1, 10)  # Random quantity for each article
+        prix_total_article = prix * quantite
+        prix_panier += prix_total_article
+        achats.append((article_id, quantite))  # Append a tuple with article_id and the chosen quantity
+    return prix_panier, achats
 
 def test_select_and_calculate_prix_panier():
     # Création d'un mock pour le cursor
