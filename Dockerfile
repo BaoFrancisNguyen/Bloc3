@@ -46,7 +46,7 @@ USER bloc3
 WORKDIR /var/www/html
 
 # installing Composer deps, the vendor folder will only be populated inside the container
-RUN composer install
+#RUN composer install
 
 # running Apache
 CMD apache2-foreground
