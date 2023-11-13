@@ -4,10 +4,10 @@ from datetime import datetime
 
 # Configuration for MySQL connection
 config = {
-    'user': 'bloc3',
-    'password': 'bloc3',
-    'host': 'database',
-    'database': 'bloc3',
+    'user': 'root',
+    'password': 'password',
+    'host': '127.0.0.1',
+    'database': 'testdb',
     'raise_on_warnings': True
 }
 
