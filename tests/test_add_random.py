@@ -2,9 +2,7 @@
 import pytest
 from unittest.mock import MagicMock
 import random
-import sys
-sys.path.append('../data')
-from add_random import select_and_calculate_prix_panier
+
 
 def select_and_calculate_prix_panier(cursor, nombre_articles=5):
     # Select random articles and calculate the prix panier
