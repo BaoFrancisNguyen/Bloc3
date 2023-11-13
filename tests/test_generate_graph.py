@@ -151,7 +151,7 @@ def test_generate_category_graph():
         
         mock_cursor = MagicMock()
         mock_connect.return_value.cursor.return_value = mock_cursor
-        mock_cursor.fetchall.return_value = [('Cat1', 100), ('Cat2', 200)]
+        mock_cursor.fetchall.return_value = [('alimentaire', 100), ('multimédia', 200)]
 
         graph_generator._generate_category_graph()
 
