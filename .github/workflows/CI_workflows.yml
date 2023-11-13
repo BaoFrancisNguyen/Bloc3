@@ -41,4 +41,4 @@ jobs:
     - name: Run PHP tests
       run: |
         # Commande pour exécuter les tests PHP
-        phpunit
+        phpunit tests/
