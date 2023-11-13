@@ -1,9 +1,9 @@
 <?php
 
-$dbhost = "database"; // name of the dockerized db service
-$dbuser = "bloc3";
-$password = "bloc3";
-$db = "bloc3";
+$dbhost = "127.0.0.1"; // name of the dockerized db service
+$dbuser = "root";
+$password = "password";
+$db = "testdb";
 
 
 $conn = new mysqli($dbhost, $dbuser, $password, $db);
