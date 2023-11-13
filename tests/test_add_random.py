@@ -1,7 +1,8 @@
 
 import pytest
 from unittest.mock import MagicMock
-from add_random import select_and_calculate_prix_panier
+import random
+from ../data/add_random import select_and_calculate_prix_panier
 
 def test_select_and_calculate_prix_panier():
     # Création d'un mock pour le cursor
