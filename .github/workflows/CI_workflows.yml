@@ -49,7 +49,7 @@ jobs:
     - name: Run Python tests
       run: |
         # Commande pour exécuter les tests Python
-        python -m unittest
+        pytest --junitxml=python-report.xml
 
     - name: Run PHP tests
       run: |
