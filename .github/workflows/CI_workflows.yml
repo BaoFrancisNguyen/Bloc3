@@ -41,4 +41,10 @@ jobs:
     - name: Run PHP tests
       run: |
         # Commande pour exécuter les tests PHP
-        phpunit tests/
+        phpunit tests/ --log-junit phpunit-report.xml
+
+    - name: Upload Test Report
+      uses: actions/upload-artifact@v2
+      with:
+        name: phpunit-report
+        path: phpunit-report.xml
