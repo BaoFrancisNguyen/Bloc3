@@ -1,0 +1,28 @@
+{
+    "name": "BaoFrancisNguyen/bloc3",
+    "description": "Une brève description de votre projet",
+    "type": "project",
+    "require": {
+        "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.0.1",  // Exemple de dépendance
+        "symfony/console": "^5.2"      // Une autre dépendance
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",     // Dépendance pour le développement
+        "phpstan/phpstan": "^0.12"     // Un autre outil de développement
+    },
+    "autoload": {
+        "psr-4": {
+            "Votre\\EspaceDeNom\\": "src/"  // Autoload pour votre code
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "8.2"  // La version de PHP cible
+        }
+    },
+    "scripts": {
+        "test": "phpunit"  // Script personnalisé pour exécuter les tests
+    }
+}

@@ -34,7 +34,7 @@ COPY --chown=bloc3:bloc3 . /var/www/html
 COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # disabling all MPM modules
-RUN a2dismod mpm_prefork mpm_event mpm_worker
+RUN a2dismod mpm_event mpm_worker
 
 # enabling Apache mod rewrite
 RUN a2enmod rewrite mpm_prefork
@@ -46,7 +46,7 @@ USER bloc3
 WORKDIR /var/www/html
 
 # installing Composer deps, the vendor folder will only be populated inside the container
-#RUN composer install
+RUN composer install
 
 # running Apache
 CMD apache2-foreground
