@@ -12,3 +12,4 @@ $conn = new mysqli($dbhost, $dbuser, $password, $db);
 if ($conn->connect_error) {
     die("Erreur de connexion : " . $conn->connect_error);
 }
+
