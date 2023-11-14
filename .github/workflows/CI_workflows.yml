@@ -52,6 +52,15 @@ jobs:
       run: |
         # Commande pour exécuter les tests Python
         pytest --junitxml=python-report.xml
+    - name: Run tests with coverage
+      run: |
+        pip install coverage
+        coverage run -m pytest
+      
+    - name: Generate coverage report
+      run: |
+        coverage report
+        coverage html
 
     - name: Run PHP tests
       run: |
