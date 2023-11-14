@@ -53,9 +53,13 @@
         <img id="graphImage" src="" alt="Graphique généré">
     </div>
     <br><br>
-    <form method="post">
-        <input type="submit" name="export_data" value="Exporter les données en CSV" />
+    <form action="export_collecte.php" method="post">
+        <label for="row_count">Nombre de lignes à exporter :</label>
+        <input type="number" id="row_count" name="row_count" min="1" required>
+        
+        <input type="submit" name="export_data" value="Exporter les données en CSV">
     </form>
+    
     
     <a href="../admin/deconnexion.php">Deconnexion</a>
 </body>
