@@ -1,8 +1,5 @@
 <?php
-// export_collecte.php
-
-// Inclure la configuration de la base de données
-include 'sql.php';
+//configuration de la base de données
 
 // Vérifiez si l'action d'exportation a été demandée
 if (isset($_POST['export_data'])) {
@@ -12,6 +9,8 @@ if (isset($_POST['export_data'])) {
 
 function exportCollecteDataToCSV($rowCount) {
     // Connexion à la base de données
+
+    require "sql.php";
     $conn = new mysqli($dbhost, $dbuser, $password, $db);
 
     // Vérifier la connexion
