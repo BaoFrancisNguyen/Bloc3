@@ -79,7 +79,10 @@ switch ($request_route) {
     case "GET_/output_category_graph.png":
         require "../output_category_graph.png";
         break;
-
+    
+    case "POST_/export_collecte.php":
+        require "../export_collecte.php";
+        break;
 
     default:
         header("HTTP/1.1 404 Not Found");
